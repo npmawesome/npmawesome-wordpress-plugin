@@ -8,6 +8,14 @@ Version: 1.0
 Author: Alex Gorbatchev
 Author URI: https://github.com/alexgorbatchev
 
+[module] -> will print browsenpm link
+[module full] -> will print browsenpm link, github and license
+[module name="gulp-print" github="alexgorbatchev/gulp-print" license="boo"]
+[module name="gulp-print" github="alexgorbatchev/gulp-print" license="boo" full]
+
+[author] -> will print author name
+[author photo] will display author github profile photo
+
 === DEPENDENCIES ===
 http://php.net/manual/en/yaml.installation.php
 sudo apt-get install php5-curl
@@ -65,15 +73,28 @@ function npm_module_shortcode($atts) {
     $atts = [];
   }
 
-  $a = shortcode_atts($module, $atts);
-  $repo = $module['repo'];
-  $license = $module['license'];
-  $name = npm_def($module['install'], $module['name']);
-  $displayName = npm_def($module['displayName'], $name);
-  $result = "<a href='http://browsenpm.org/package/$name'>$displayName</a>";
+  $a = shortcode_atts(array(
+    github => $module['github'],
+    license => $module['license'],
+    name => npm_def($module['install'], $module['name']),
+  ), $atts);
+
+  $a[displayName] = npm_def($module['displayName'], $a[name]);
+
+  $github = $a['github'];
+  $license = $a['license'];
+  $name = $a['name'];
+  $displayName = $a['displayName'];
+
+  if(array_search('install', $atts) !== FALSE) {
+    $result = "<span class='install'>npm install $name</span>";
+  }
+  else {
+    $result = "<a href='http://browsenpm.org/package/$name'>$displayName</a>";
+  }
 
   if(array_search('full', $atts) !== FALSE) {
-    if(!is_null($repo)) $info = "GitHub: " . npm_github_link_html($repo);
+    if(!is_null($github)) $info = "GitHub: " . npm_github_link_html($github);
     if(!is_null($license)) $info = "$info, License: $license";
     $result = "$result <span class='meta'>($info)</span>";
   }
@@ -94,7 +115,6 @@ function npm_author_shortcode($atts) {
     $atts = [];
   }
 
-  $a = shortcode_atts($module, $atts);
   $github = $author['github'];
   $name = $author['name'];
 
