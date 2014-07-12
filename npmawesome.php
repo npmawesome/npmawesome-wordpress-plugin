@@ -8,9 +8,41 @@ Version: 1.0
 Author: Alex Gorbatchev
 Author URI: https://github.com/alexgorbatchev
 
+=== DEPENDENCIES ===
+http://php.net/manual/en/yaml.installation.php
+sudo apt-get install php5-curl
+sudo /etc/init.d/apache2 restart
+
 === RELEASE NOTES ===
 2014-07-11 - v1.0 - first version
 */
+
+function npm_curl($url) {
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($ch, CURLOPT_HEADER, false);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_REFERER, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("User-Agent: npmawesome.com"));
+  $result = curl_exec($ch);
+  curl_close($ch);
+  return $result;
+}
+
+function npm_curl_json($url) {
+  $file = realpath(dirname(__FILE__)).'/cache/'.md5($url);
+
+  if(file_exists($file)) {
+    return json_decode(file_get_contents($file), true);
+  }
+  else {
+    $json = json_decode(npm_curl($url), true);
+    file_put_contents($file, json_encode($json));
+    return $json;
+  }
+}
 
 function npm_def($value, $default) {
   return is_null($value) ? $default : $value;
@@ -63,9 +95,16 @@ function npm_author_shortcode($atts) {
   }
 
   $a = shortcode_atts($module, $atts);
-  $repo = $author['repo'];
+  $github = $author['github'];
   $name = $author['name'];
-  $result = "<a href='https://github.com/$repo'>$name</a>";
+
+  if(array_search('photo', $atts) !== FALSE) {
+    $author_info = npm_curl_json("https://api.github.com/users/$github");
+    $result = "<img src='$author_info[avatar_url]'/>";
+  }
+  else {
+    $result = "<a href='https://github.com/$github'>$name</a>";
+  }
 
   return "<span class='npm author'>$result</span>";
 }
