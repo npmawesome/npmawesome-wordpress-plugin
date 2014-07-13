@@ -53,7 +53,7 @@ function npm_curl_json($url) {
 }
 
 function npm_def($value, $default) {
-  return is_null($value) ? $default : $value;
+  return empty($value) ? $default : $value;
 }
 
 function npm_github_link_html($link) {
@@ -61,29 +61,25 @@ function npm_github_link_html($link) {
 }
 
 function npm_module_shortcode($atts) {
-  $meta = get_post_custom();
-  $npm = yaml_parse($meta['npm'][0]);
-  $module = $npm['module'];
-
-  if(is_null($npm) or is_null($module)) {
-    return "<div style='background: red; color: white;'>NPM META NOT SET</div>";
-  }
-
   if(!is_array($atts)) {
     $atts = [];
   }
 
+  $name = get_field('module_name');
+  $displayName = npm_def(get_field('module_display_name'), $name);
+  $github = get_field('module_github');
+  $license = get_field('module_license');
+
   $a = shortcode_atts(array(
-    github => $module['github'],
-    license => $module['license'],
-    name => npm_def($module['install'], $module['name']),
+    name => $name,
+    github => $github,
+    license => $license,
+    displayName => $displayName,
   ), $atts);
 
-  $a[displayName] = npm_def($module['displayName'], $a[name]);
-
+  $name = $a['name'];
   $github = $a['github'];
   $license = $a['license'];
-  $name = $a['name'];
   $displayName = $a['displayName'];
 
   if(array_search('install', $atts) !== FALSE) {
@@ -103,27 +99,19 @@ function npm_module_shortcode($atts) {
 }
 
 function npm_author_shortcode($atts) {
-  $meta = get_post_custom();
-  $npm = yaml_parse($meta['npm'][0]);
-  $author = $npm['author'];
-
-  if(is_null($npm) or is_null($author)) {
-    return "<div style='background: red; color: white;'>NPM META NOT SET</div>";
-  }
-
   if(!is_array($atts)) {
     $atts = [];
   }
 
-  $github = $author['github'];
-  $name = $author['name'];
+  $github = get_field('module_github');
+  $github = substr($github, 0, strpos($github, '/'));
+  $github_info = npm_curl_json("https://api.github.com/users/$github");
 
   if(array_search('photo', $atts) !== FALSE) {
-    $author_info = npm_curl_json("https://api.github.com/users/$github");
-    $result = "<img src='$author_info[avatar_url]'/>";
+    $result = "<img src='$github_info[avatar_url]'/>";
   }
   else {
-    $result = "<a href='https://github.com/$github'>$name</a>";
+    $result = "<a href='https://github.com/$github'>$github_info[name]</a>";
   }
 
   return "<span class='npm author'>$result</span>";
