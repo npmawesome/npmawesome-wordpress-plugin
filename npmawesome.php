@@ -52,10 +52,6 @@ function npm_curl_json($url) {
   }
 }
 
-function npm_def($value, $default) {
-  return empty($value) ? $default : $value;
-}
-
 function npm_github_link_html($link) {
   return "<a href='https://github.com/$link'>$link</a>";
 }
@@ -65,22 +61,11 @@ function npm_module_shortcode($atts) {
     $atts = [];
   }
 
-  $name = get_field('module_name');
-  $displayName = npm_def(get_field('module_display_name'), $name);
-  $github = get_field('module_github');
-  $license = get_field('module_license');
-
-  $a = shortcode_atts(array(
-    name => $name,
-    github => $github,
-    license => $license,
-    displayName => $displayName,
-  ), $atts);
-
-  $name = $a['name'];
-  $github = $a['github'];
-  $license = $a['license'];
-  $displayName = $a['displayName'];
+  $a = shortcode_atts(array(name => '', github => '', license => '', displayName => ''), $atts);
+  $name = $a['name'] ?: get_field('module_name');
+  $displayName = $a['displayName'] ?: $a['name'] ?: get_field('module_display_name') ?: $name;
+  $github = $a['github'] ?: get_field('module_github');
+  $license = $a['license'] ?: get_field('module_license');
 
   if(array_search('install', $atts) !== FALSE) {
     $result = "<span class='install'>npm install $name</span>";
