@@ -14,7 +14,6 @@ function npm_partner_shortcode($atts) {
   }
 
   $html = eval(file_get_contents(join(DIRECTORY_SEPARATOR, array(NPM_DIR, "partners", "$partner.html"))));
-  return "---".$partner."---".var_dump($atts[0])."---".$html;
 
   return "<div class='partner $partner'>$html</span>";
 }
