@@ -14,7 +14,7 @@ function npm_author_shortcode($atts) {
   $github_info = npm_curl_json("https://api.github.com/users/$github");
 
   if(array_search('photo', $atts) !== FALSE) {
-    $result = "<img src='$github_info[avatar_url]'/>";
+    $result = "<img src='$github_info[avatar_url]' width='200' align='right' vspace='10' hspace='10'/>";
   }
   else {
     $result = "<a href='https://github.com/$github'>$github_info[name]</a>";
