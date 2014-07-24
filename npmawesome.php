@@ -23,3 +23,13 @@ require_once( join( DIRECTORY_SEPARATOR, array( NPM_DIR, 'common.php' ) ) );
 require_once( join( DIRECTORY_SEPARATOR, array( NPM_DIR, 'module.php' ) ) );
 require_once( join( DIRECTORY_SEPARATOR, array( NPM_DIR, 'author.php' ) ) );
 require_once( join( DIRECTORY_SEPARATOR, array( NPM_DIR, 'partner.php' ) ) );
+
+// replace the default posts feed with feedburner
+function npmawesome_custom_rss_feed($output, $feed) {
+  if(strpos($output, 'comments'))
+    return $output;
+
+  return esc_url('http://feeds.feedburner.com/npmawesome');
+}
+
+add_action('feed_link', 'npmawesome_custom_rss_feed', 10, 2);
