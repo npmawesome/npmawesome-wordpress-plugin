@@ -12,7 +12,7 @@ function npm_get_author($post_id) {
     return '';
   }
 
-  $result = "<a href='https://github.com/$html_url'>$name</a>";
+  $result = "<a href='$html_url'>$name</a>";
   return "<span class='npm author name'>$result</span>";
 }
 
