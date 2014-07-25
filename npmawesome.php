@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name       : npmawesome
-Plugin Script     : npmawesome.php
-Plugin URI        : http://npmawesome.com
-Description       : custom NPMAWESOME stuff
-Version           : 1.0
-Author            : Alex Gorbatchev
-Author URI        : https://github.com/alexgorbatchev
-GitHub Plugin URI : npmawesome/npmawesome-wordpress-plugin
-GitHub Branch     : master
+Plugin Name: npmawesome
+Plugin Script: npmawesome.php
+Plugin URI: https://github.com/npmawesome/npmawesome-wordpress-plugin
+Description: custom NPMAWESOME stuff
+Version: 1.0
+Author: Alex Gorbatchev
+Author URI: https://github.com/alexgorbatchev
+GitHub Plugin URI: npmawesome/npmawesome-wordpress-plugin
+GitHub Branch: master
 
 === DEPENDENCIES ===
 http://php.net/manual/en/yaml.installation.php
