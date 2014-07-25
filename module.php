@@ -11,11 +11,11 @@ function npm_module_shortcode($atts) {
     $atts = [];
   }
 
-  $a = shortcode_atts(array(name => '', github => '', license => '', displayName => ''), $atts);
+  $name = $github = $license = $displayName = '';
+
+  $a = shortcode_atts(compact('name', 'github', 'license', 'displayName'), $atts);
   $name = $a['name'] ?: get_field('module_name');
   $displayName = $a['displayName'] ?: $a['name'] ?: get_field('module_display_name') ?: $name;
-  $github = $a['github'] ?: get_field('module_github');
-  $license = $a['license'] ?: get_field('module_license');
 
   if(array_search('install', $atts) !== FALSE) {
     $result = "<span class='install'>npm install $name</span>";
@@ -25,6 +25,9 @@ function npm_module_shortcode($atts) {
   }
 
   if(array_search('full', $atts) !== FALSE) {
+    $github = $a['github'] ?: get_field('module_github');
+    $license = $a['license'] ?: get_field('module_license');
+
     if(!is_null($github)) $info = "GitHub: " . npm_github_link_html($github);
     if(!is_null($license)) $info = "$info, License: $license";
     $result = "$result <span class='meta'>($info)</span>";
