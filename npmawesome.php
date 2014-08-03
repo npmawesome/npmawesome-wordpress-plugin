@@ -21,10 +21,11 @@ sudo /etc/init.d/apache2 restart
 
 define('NPM_DIR', dirname(__FILE__));
 
-require_once(join(DIRECTORY_SEPARATOR, array(NPM_DIR, 'common.php')));
-require_once(join(DIRECTORY_SEPARATOR, array(NPM_DIR, 'module.php')));
-require_once(join(DIRECTORY_SEPARATOR, array(NPM_DIR, 'author.php')));
-require_once(join(DIRECTORY_SEPARATOR, array(NPM_DIR, 'partner.php')));
+require_once(NPM_DIR.'common.php');
+require_once(NPM_DIR.'module.php');
+require_once(NPM_DIR.'author.php');
+require_once(NPM_DIR.'partner.php');
+require_once(NPM_DIR.'widgets/github-author/index.php');
 
 // replace the default posts feed with feedburner
 function npmawesome_custom_rss_feed($output, $feed) {
@@ -35,3 +36,7 @@ function npmawesome_custom_rss_feed($output, $feed) {
 }
 
 add_action('feed_link', 'npmawesome_custom_rss_feed', 10, 2);
+
+add_action('widgets_init', function() {
+  register_widget('NA_Widget_Github_Author');
+});

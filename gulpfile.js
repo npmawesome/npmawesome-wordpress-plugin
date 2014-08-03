@@ -7,4 +7,4 @@ gulp.task('less', function () {
     .pipe(gulp.dest('widgets'));
 });
 
-gulp.task('build', ['less']);
+gulp.task('default', ['less']);

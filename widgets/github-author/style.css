@@ -1,86 +1,110 @@
-.github-author {
-  display: inline-block;
-}
-.github-author .user {
-  font-family: "Helvetica", Arial, sans-serif;
-  display: inline-block;
-  width: 265px;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 6px;
-  position: relative;
-  background-color: #2E353C;
-  text-align: center;
-  color: #fff;
-  font-weight: 100;
-  transition: background 1000ms ease-out;
-}
-.github-author .user dl,
-.github-author .user dd {
-  margin: 0;
-}
-.github-author .user dt {
-  display: none;
-}
-.github-author .user-data {
-  background: #ffffff url('webcomponent/github.png') no-repeat 5px 5px;
-  background-size: 25px;
-  height: 85px;
-  border: 1px solid #D5D5D5;
-  border-bottom: 0;
-}
-.github-author dd.user-avatar {
-  display: inline-block;
-  margin: 20px 0 10px;
-}
-.github-author .user-avatar img {
-  border-radius: 100%;
-  height: 120px;
-  width: 120px;
-  border: 3px solid #fff;
-  vertical-align: middle;
-  background-color: #fff;
-}
-.github-author dd.user-name,
-.github-author dd.user-account {
-  margin: 5px 0;
-}
-.github-author .user-name {
-  font-size: 24px;
-}
-.github-author .user-account {
-  font-size: 16px;
-  color: #999;
-  margin: 5px 0;
-}
-.github-author .user-stats {
-  border-top: 1px groove #999;
-  position: relative;
-  top: 155px;
-}
-.github-author .user-stats dd {
-  padding: 10px 20px;
-}
-.github-author .user-repos,
-.github-author .user-following,
-.github-author .user-followers {
-  display: inline-block;
-  font-size: 22px;
-  color: #999;
-}
-.github-author .user-repos:after,
-.github-author .user-following:after,
-.github-author .user-followers:after {
-  content: attr(data-stats);
-  text-transform: uppercase;
-  display: block;
-  font-size: 11px;
-  color: #666;
-  font-weight: normal;
-  line-height: 1.7em;
-}
-.github-author a.user-github-url,
-.github-author a.user-repos-url,
-.github-author a.user-followers-url {
+.gh-profile-widget a {
   text-decoration: none;
+}
+.gh-profile-widget .vcard-avatar {
+  display: block;
+  text-align: center;
+}
+.gh-profile-widget .vcard-avatar img {
+  border-radius: 50%;
+}
+.gh-profile-widget .vcard-names {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+.gh-profile-widget .vcard-fullname {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  font-size: 20px;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.gh-profile-widget .vcard-username {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.gh-profile-widget .vcard-details {
+  list-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.gh-profile-widget .vcard-detail {
+  width: 100%;
+  padding: 2px 0 2px 24px;
+  overflow-x: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+.gh-profile-widget .vcard-detail .octicon {
+  float: left;
+  width: 16px;
+  text-align: center;
+  margin-left: -24px;
+  color: #ccc;
+}
+.gh-profile-widget .vcard-stats {
+  margin-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+.gh-profile-widget .vcard-stat {
+  float: left;
+  width: 33.333%;
+  font-size: 11px;
+}
+.gh-profile-widget .vcard-stat-count {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+}
+.gh-profile-widget .vcard-orgs .vcard-org-avatar {
+  display: inline-block;
+}
+.gh-profile-widget .vcard-orgs img {
+  border-radius: 3px;
+  box-shadow: none;
+}
+.gh-profile-widget .vcard-stats:before,
+.gh-profile-widget .vcard-stats:after {
+  content: " ";
+  display: table;
+}
+.gh-profile-widget .vcard-orgs:before,
+.gh-profile-widget .vcard-orgs:after {
+  content: " ";
+  display: table;
+}
+.gh-profile-widget .vcard-fullname,
+.gh-profile-widget .vcard-fullname a {
+  color: #333;
+}
+.gh-profile-widget .vcard-username,
+.gh-profile-widget .vcard-username a {
+  color: #666;
+}
+.gh-profile-widget .vcard-details {
+  border-top: 1px solid #ededed;
+}
+.gh-profile-widget .vcard-stats {
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+.gh-profile-widget .vcard-stat {
+  color: #666;
+}
+.gh-profile-widget .vcard-stat-count {
+  color: #333;
 }
