@@ -27,13 +27,6 @@
     </li>
     <?php endif; ?>
 
-    <?php if ( ! empty( $github['email'] ) ) : ?>
-    <li class="vcard-detail">
-      <span class="octicon octicon-mail"></span>
-      <a class="email" href="mailto:<?php echo esc_attr( $github['email'] ) ?>"><?php echo esc_html( $github['email'] ) ?></a>
-    </li>
-    <?php endif; ?>
-
     <?php if ( ! empty( $github['created_at'] ) ) : ?>
     <li class="vcard-detail">
       <span class="octicon octicon-clock"></span>
