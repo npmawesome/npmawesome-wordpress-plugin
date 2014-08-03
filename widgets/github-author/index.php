@@ -36,7 +36,7 @@ class NA_Widget_Github_Author extends WP_Widget {
 
     if(!empty($github)) {
       require(__DIR__.'/view.php');
-      wp_enqueue_style('npmawesome-github-author', plugins_url('/widgets/github-author/style.css'));
+      wp_enqueue_style('npmawesome-github-author', plugins_url('style.css', __FILE__));
     }
 
     if ( ! $this->is_preview() ) {
