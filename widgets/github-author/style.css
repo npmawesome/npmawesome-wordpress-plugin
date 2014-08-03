@@ -137,3 +137,6 @@
 .gh-profile-widget .vcard-stat-count {
   color: #333;
 }
+.gh-profile-widget > div:last-of-type {
+  margin-bottom: 15px;
+}
