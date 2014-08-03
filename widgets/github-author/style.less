@@ -64,7 +64,6 @@
   .vcard-details {
     list-style: none;
     padding-top: 15px;
-    padding-bottom: 15px;
   }
   .vcard-detail {
     width: 100%;
@@ -107,22 +106,24 @@
       box-shadow: none;
     }
   }
-}
-.gh-profile-widget .vcard-stats:before,.gh-profile-widget .vcard-stats:after {
-  content: " ";
-  display: table;
-}
-.gh-profile-widget .vcard-orgs:before,.gh-profile-widget .vcard-orgs:after {
-  content: " ";
-  display: table;
-}
-.gh-profile-widget .vcard-fullname,.gh-profile-widget .vcard-fullname a {
-  color: #333;
-}
-.gh-profile-widget .vcard-username,.gh-profile-widget .vcard-username a {
-  color: #666;
-}
-.gh-profile-widget {
+  .vcard-stats:before,
+  .vcard-stats:after {
+    content: " ";
+    display: table;
+  }
+  .vcard-orgs:before,
+  .vcard-orgs:after {
+    content: " ";
+    display: table;
+  }
+  .vcard-fullname,
+  .vcard-fullname a {
+    color: #333;
+  }
+  .vcard-username,
+  .vcard-username a {
+    color: #666;
+  }
   .vcard-details {
     border-top: 1px solid #ededed;
   }
