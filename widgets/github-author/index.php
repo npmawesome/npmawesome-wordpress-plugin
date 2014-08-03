@@ -3,7 +3,7 @@
 class NA_Widget_Github_Author extends WP_Widget {
   function __construct() {
     $widget_ops = array('classname' => 'widget_github_author', 'description' => __( "Author for the current NPM module") );
-    parent::__construct('recent-posts', __('NPMAWESOME Githug Author'), $widget_ops);
+    parent::__construct('na-github-author', __('NPMAWESOME Githug Author'), $widget_ops);
     $this->alt_option_name = 'widget_github_author';
 
     add_action('save_post', array($this, 'flush_widget_cache'));
