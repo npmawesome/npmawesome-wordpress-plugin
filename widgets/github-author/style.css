@@ -1,0 +1,86 @@
+.github-author {
+  display: inline-block;
+}
+.github-author .user {
+  font-family: "Helvetica", Arial, sans-serif;
+  display: inline-block;
+  width: 265px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 6px;
+  position: relative;
+  background-color: #2E353C;
+  text-align: center;
+  color: #fff;
+  font-weight: 100;
+  transition: background 1000ms ease-out;
+}
+.github-author .user dl,
+.github-author .user dd {
+  margin: 0;
+}
+.github-author .user dt {
+  display: none;
+}
+.github-author .user-data {
+  background: #ffffff url('webcomponent/github.png') no-repeat 5px 5px;
+  background-size: 25px;
+  height: 85px;
+  border: 1px solid #D5D5D5;
+  border-bottom: 0;
+}
+.github-author dd.user-avatar {
+  display: inline-block;
+  margin: 20px 0 10px;
+}
+.github-author .user-avatar img {
+  border-radius: 100%;
+  height: 120px;
+  width: 120px;
+  border: 3px solid #fff;
+  vertical-align: middle;
+  background-color: #fff;
+}
+.github-author dd.user-name,
+.github-author dd.user-account {
+  margin: 5px 0;
+}
+.github-author .user-name {
+  font-size: 24px;
+}
+.github-author .user-account {
+  font-size: 16px;
+  color: #999;
+  margin: 5px 0;
+}
+.github-author .user-stats {
+  border-top: 1px groove #999;
+  position: relative;
+  top: 155px;
+}
+.github-author .user-stats dd {
+  padding: 10px 20px;
+}
+.github-author .user-repos,
+.github-author .user-following,
+.github-author .user-followers {
+  display: inline-block;
+  font-size: 22px;
+  color: #999;
+}
+.github-author .user-repos:after,
+.github-author .user-following:after,
+.github-author .user-followers:after {
+  content: attr(data-stats);
+  text-transform: uppercase;
+  display: block;
+  font-size: 11px;
+  color: #666;
+  font-weight: normal;
+  line-height: 1.7em;
+}
+.github-author a.user-github-url,
+.github-author a.user-repos-url,
+.github-author a.user-followers-url {
+  text-decoration: none;
+}
