@@ -108,4 +108,3 @@
 </div>
 <!-- / gh-profile-widget -->
 
-<?php endif; ?>

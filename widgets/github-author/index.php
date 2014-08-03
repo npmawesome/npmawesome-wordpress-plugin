@@ -32,9 +32,12 @@ class NA_Widget_Github_Author extends WP_Widget {
 
     ob_start();
 
-    $github = npm_get_github_info();
-    require(__DIR__.'/view.php');
-    wp_enqueue_style('npmawesome-github-author', plugins_url('/widgets/github-author/style.css'));
+    $github = npm_get_github_info(get_the_ID());
+
+    if(!empty($github)) {
+      require(__DIR__.'/view.php');
+      wp_enqueue_style('npmawesome-github-author', plugins_url('/widgets/github-author/style.css'));
+    }
 
     if ( ! $this->is_preview() ) {
       $cache[ $args['widget_id'] ] = ob_get_flush();
