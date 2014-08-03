@@ -83,7 +83,7 @@
   color: #ccc;
 }
 .gh-profile-widget .vcard-stats {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
@@ -136,7 +136,4 @@
 }
 .gh-profile-widget .vcard-stat-count {
   color: #333;
-}
-.gh-profile-widget > div:last-of-type {
-  margin-bottom: 15px;
 }
