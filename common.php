@@ -39,13 +39,17 @@ function npm_get_github_info($post_id) {
     return $github_info;
   }
 
-  $github = get_field('module_github', $post_id);
+  $github = get_field('module_author', $post_id);
 
   if(empty($github)) {
-    return null;
+    $github = get_field('module_github', $post_id);
+    $github = substr($github, 0, strpos($github, '/'));
+
+    if(empty($github)) {
+      return null;
+    }
   }
 
-  $github = substr($github, 0, strpos($github, '/'));
   $github_info = npm_curl_json("https://api.github.com/users/$github");
 
   wp_cache_set($cache_key, $github_info);
