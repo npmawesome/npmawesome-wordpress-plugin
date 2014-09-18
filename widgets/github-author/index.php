@@ -65,6 +65,3 @@ class NA_Widget_Github_Author extends WP_Widget {
   }
 }
 
-add_action('widgets_init', function() {
-  register_widget('NA_Widget_Recent_Posts');
-});
